@@ -1,0 +1,145 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="EnAbleIndiaAssets.Master_Pages.Site2" %>
+
+<!doctype html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EnAble India Assets</title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <link href="../CSS/bootstrap.css" rel="stylesheet" runat="server"/>
+    <link href="~/CSS/asset.css" rel="stylesheet" runat="server" />
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" runat="server" />
+    
+    <style type="text/css">
+        .auto-style1 {
+            height: 45px;
+            width:150px;
+            padding-bottom:10px;
+        }
+        .columnscss {
+            width:1300px;
+        }
+    </style>
+    
+</head>
+<body class="bg">
+    <form id="form1" runat="server" target="_self">
+        <asp:ScriptManager id="site2mspage" runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        
+        <div class="nav navbar navbar-expand-lg navbar-inverse navbar-fixed-top pb-4 mb-0" style="height:75px">
+            
+                <div class="navbar-header">
+                    <a class="nav navbar-brand" runat="server" href="~/Dashboard">
+                        <asp:Image ID="Image1" runat="server"  ImageUrl="~/img/logo2.jpg" CssClass="auto-style1 img-fluid"/>
+                    </a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>                    
+                </div>
+                <div class="navbar-collapse collapse mt-3">
+                    <ul class="nav navbar-nav sitefontsize">
+                        <asp:LoginView ID="LoginView1" runat="server" EnableViewState="true">                            
+                            <LoggedInTemplate>
+                                    <li class="nav-item px-4"><a class="nav-link" runat="server" href="~/Dashboard.aspx">Home</a></li>
+                                    <li class="nav-item px-4"><a class="nav-link" runat="server" href="~/ListofAssets.aspx">List of Assets</a></li>
+                            </LoggedInTemplate>
+                            <RoleGroups>                               
+                                <asp:RoleGroup Roles="Administrator">
+                                    <ContentTemplate>
+                                    <li class="nav-item px-4"><a class="nav-link" runat="server" href="~/Dashboard.aspx">Home</a></li>
+                                    <li class="nav-item px-4"><a class="nav-link" runat="server" href="~/Admin/AssetsAll.aspx">Add Assets</a></li>
+                                    <li class="nav-item px-4"><a class="nav-link" runat="server" href="~/GridView.aspx">List of Assets</a></li>
+                                    <li class="nav-item px-4"><a class="nav-link" runat="server" href="~/Admin/GridViewSLCOL.aspx">Edit Assets</a></li>
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
+                        </asp:LoginView>                        
+                    </ul>
+                  </div>
+            
+                    <ul class="nav navbar-nav navbar-right mx-0 mt-3 sitefontsize">
+                        <li class="dropdown list-group-item text-dark">
+                            <a class="btn btn-dark dropdown-toggle text-center text-light" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <asp:LoginName ID="LoginName1" runat="server" />
+                            </a>
+                            <ul class="dropdown-menu text-center text-dark" aria-labelledby="dropdownMenuButton">
+                                <li class="list-group-item text-center text-dark"><a class="nav-link" runat="server" href="~/Profile.aspx">Profile</a></li>
+                                <li class="list-group-item text-center text-dark">
+                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/Login.aspx" LogoutAction="Redirect" CssClass="nav-link" />                            
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                           
+        </div>
+        
+        <div class="container-fluid body-content py-4">
+            <div class="row ml-1 mr-1" style="height:100%;">
+                <div class="col-md-3 card bg-light p-2" style="width:25%;" id="cardwidth" runat="server">
+                    
+                    <ul class="list-group list-group-flush">
+                        <asp:LoginView ID="EILoginView2" runat="server" EnableViewState="true">
+                               <LoggedInTemplate>
+                                        <li class="list-group-item text-center"><a class="nav-link" runat="server" href="~/Check_In.aspx">Check-In</a></li>
+                                        <li class="list-group-item text-center"><a class="nav-link" runat="server" href="~/Check_Out.aspx">Check-Out</a></li>
+                                </LoggedInTemplate>
+                                <RoleGroups>                                  
+                                <asp:RoleGroup Roles="Administrator">
+                                    <ContentTemplate>
+                                        <li class="list-group-item text-center"><a class="nav-link" runat="server" href="~/Fields.aspx">Add Fields</a></li>
+                                        <li class="list-group-item text-center"><a class="nav-link" runat="server" href="~/ExcelToSQL.aspx">Import Excel File</a></li>
+                                        <li class="list-group-item text-center"><a class="nav-link" runat="server" href="~/Check_In.aspx">Check-In</a></li>
+                                        <li class="list-group-item text-center"><a class="nav-link" runat="server" href="~/Check_Out.aspx">Check-Out</a></li>
+                                        <li class="dropdown list-group-item">
+                                            <a class="btn btn-light dropdown-toggle w-100 text-center" role="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Database
+                                            </a>
+                                            <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButton1">
+                                                <li class="list-group-item"><a class="dropdown-item nav-link" href="Categories.aspx">Categories</a></li>
+                                                <li class="list-group-item"><a class="dropdown-item nav-link" href="Locations.aspx">Locations</a></li>
+                                                <li class="list-group-item"><a class="dropdown-item nav-link" href="Departments.aspx">Departments</a></li>
+                                                <li class="list-group-item"><a class="dropdown-item nav-link" href="Sites.aspx">Sites</a></li>
+                                            </ul>
+                                        </li>
+                                      </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
+                        </asp:LoginView>
+                    </ul>
+                    
+                </div>
+        
+                <div class="col-md-9 card" style="width:75%;" id="cardwidth2" runat="server">                    
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>   
+                </div>
+           </div>
+        </div>
+    </form>
+</body>
+</html>
